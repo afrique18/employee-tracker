@@ -9,7 +9,7 @@ CREATE TABLE department (
 );
 
 INSERT INTO department(role)
-VALUES ("Nursing"), ("Clinician"), ("Doctors"), ("Behavioral Health");
+VALUES ("Nursing"), ("Clinical"), ("Doctors"), ("Behavior Health");
 
 CREATE TABLE role (
     role_id INT AUTO_INCREMENT,
