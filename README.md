@@ -8,3 +8,9 @@ Task to create a command-line application designed to help business owners view 
 
 1. Install all dependencies by running npm install in the command line
 2. Run node server.js in the CLI to begin prompts
+
+## Collaborators
+
+Varney Vincent, 
+Myro Joy Lee, 
+Juan Delgado
