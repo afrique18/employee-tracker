@@ -1,7 +1,5 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
-// const consoleTable = require('console.table');
-const { response } = require("express");
 
 const connection = mysql.createConnection({
     host: "127.0.0.1",
@@ -13,13 +11,14 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
+    console.log("Connected as ID " + connection.threadId);
     startMenu();
 });
 
 const startMenu = () => {
     inquirer
         .prompt({
-            name: "choice",
+            name: "option",
             type: "list",
             message: "What would you like to do?",
             choices: [
@@ -33,10 +32,11 @@ const startMenu = () => {
                 'Exit'
             ],
         })
-        .then(response => {
-            switch (response.choice) {
+        .then(function(answer) {
+            console.log("You selected: " + answer.option);
+            switch (answer.option) {
                 case 'View all employees':
-                    viewEmployee();
+                    viewEmployees();
                     break;
                 case 'View all departments':
                     viewDepartments();
@@ -44,30 +44,27 @@ const startMenu = () => {
                 case 'View all roles':
                     viewRole();
                     break;
-                case 'Add an employee':
+                case 'Add an employee': 
                     addEmployee();
                     break;
-                case 'Add a department':
+                case 'Add a department': 
                     addDepartment();
                     break;
-                case 'Add a role':
+                case 'Add a role':  
                     addRole();
                     break;
                 case 'Update employee role':
-                    updateRole();
-                    break;
-                case 'Exit':
-                    connection.end();
+                    updateEmployee();
                     break;
                 default:
                     connection.end();
             }
         });
-    };
+};
 
     const viewEmployees = () => {
         connection.query(
-            `SELECT employee_id, first_name, last_name, title, salary, dept_name, manager_id FROM ((department JOIN role ON department.id = role.department_id) JOIN employee ON role.id = employee.role_id);`,
+            `SELECT first_name, last_name, title, salary, manager_id FROM ((department JOIN role ON department.id = role.department_id) JOIN employee ON role.id = employee.role_id);`,
             function (err, res) {
                 if (err) throw err;
                 console.table(res);
@@ -76,7 +73,7 @@ const startMenu = () => {
         );
     };
 
-    const viewDepartment = () => {
+    const viewDepartments = () => {
         connection.query(
             `SELECT * FROM department`,
             function (err, res) {

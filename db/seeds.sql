@@ -1,30 +1,26 @@
-
-INSERT INTO department (dept_name)
-VALUES
+INSERT INTO department (name) VALUES
 ('Finance'),
-('Legal'),
-('Human Resources'),
 ('Sales'),
-('Security'),
-('Information Systems and Technology');
+('Engineering'),
+('Legal');
 
-INSERT INTO role (title, salary, department_id)
-VALUES
-('Accountant', 1, 80000),
-('Paralegal', 1, 60000),
-('Manager', 1, 72000),
-('Engineer', 2, 99000),
-('Sales Rep', 2, 50000),
-('Web Developer', 3, 100000);
 
-INSERT INTO employee  (first_name, last_name, role_id, department_id)
-VALUES
-('James', 'Yafondo', 1, NULL),
-('Yaminah', 'Jones', 2, 1),
-('Salema', 'Davies' 3, 2),
-('Ivan', 'Deyanov' 4, NULL),
-('Koffi', 'Kanu' 5, 4),
-('Adama', 'Traore' 6, NULL);
+INSERT INTO role (title, salary, department_id) VALUES
+('Accountant', 130000, 1),
+('Salesperson', 82000, 2)
+('Lawyer', 190000, 4)
+('Software Engineer Manager', 125000, 3),
+('Software Engineer', 112000, 3);
+
+INSERT INTO employee (first_name, last_name role_id, manager_id) VALUES
+('Ten', 'Hag', 1, Null),
+('Luke', 'Shaw', 2, 1),
+('Puyou', 'Koko', 3, 2),
+('Vito', 'Sawyer', 4, 3),
+('Amina', 'Browne', 4, 4);
+
+
+
 
 
 
